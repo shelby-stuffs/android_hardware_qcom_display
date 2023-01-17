@@ -385,8 +385,8 @@ HWC2::Error HWCDisplayBuiltIn::CommitStitchLayers() {
     // Stitch target doesn't have an input fence.
     // Render all layers at specified destination.
     LayerBuffer &input_buffer = layer->input_buffer;
-    params.src_hnd = reinterpret_cast<const private_handle_t *>(input_buffer.buffer_id);
-    params.dst_hnd = reinterpret_cast<const private_handle_t *>(output_buffer.buffer_id);
+    params.src_hnd = reinterpret_cast<const native_handle_t *>(input_buffer.buffer_id);
+    params.dst_hnd = reinterpret_cast<const native_handle_t *>(output_buffer.buffer_id);
     SetRect(layer->stitch_info.dst_rect, &params.dst_rect);
     SetRect(layer->stitch_info.slice_rect, &params.scissor_rect);
     params.src_acquire_fence = input_buffer.acquire_fence;
@@ -652,8 +652,16 @@ HWC2::Error HWCDisplayBuiltIn::SetReadbackBuffer(const native_handle_t *buffer,
     return HWC2::Error::NoResources;
   }
 
+
   const private_handle_t *handle = reinterpret_cast<const private_handle_t *>(buffer);
-  if (!handle || (handle->fd < 0)) {
+
+  if (!handle) {
+    DLOGE("Bad parameter: handle is null");
+    return HWC2::Error::BadParameter;
+  }
+
+  if (handle->fd < 0) {
+    DLOGE("Bad parameter: fd is null");
     return HWC2::Error::BadParameter;
   }
 
