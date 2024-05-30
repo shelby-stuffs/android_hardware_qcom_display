@@ -120,6 +120,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.high_fps_early_gl_phase_offset_ns=-4000000
 endif
 
+ifeq ($(TARGET_BOARD_PLATFORM),bengal)
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.sf.enable_gl_backpressure=0
+endif
+
 ifeq ($(TARGET_BOARD_PLATFORM),lito)
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.high_fps_late_sf_phase_offset_ns=-4000000 \
