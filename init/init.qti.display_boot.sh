@@ -87,11 +87,11 @@ case "$target" in
         setprop vendor.display.enable_rounded_corner 1
         setprop vendor.display.disable_rounded_corner_thread 0
         setprop vendor.display.enable_rc_support 1
-        setprop vendor.display.enable_perf_hint_large_comp_cycle 1
+        setprop vendor.display.enable_perf_hint_large_comp_cycle 0
         ;;
         417|420|444|445)
         # Set property for bengal
-        setprop vendor.display.enable_perf_hint_large_comp_cycle 1
+        setprop vendor.display.enable_perf_hint_large_comp_cycle 0
         ;;
     esac
     ;;
@@ -110,7 +110,7 @@ case "$target" in
         394|468|467)
         setprop vendor.gralloc.use_dma_buf_heaps 1
         setprop vendor.display.disable_layer_stitch 1
-        setprop vendor.display.enable_perf_hint_large_comp_cycle 1
+        setprop vendor.display.enable_perf_hint_large_comp_cycle 0
         ;;
     esac
     ;;
