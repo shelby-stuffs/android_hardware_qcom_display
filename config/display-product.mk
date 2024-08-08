@@ -165,6 +165,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_hw_recovery_dump=1
 endif
 
+ifeq ($(TARGET_HAS_QTI_OPTIMIZATIONS), true)
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.display.disable_cache_manager=1 \
+    debug.disable_screen_decorations=1 \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=2
+else
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.disable_screen_decorations=0
+endif
+
 # Enable power async mode
 PRODUCT_PROPERTY_OVERRIDES +=  vendor.display.enable_async_powermode=1
 # Soong Namespace
